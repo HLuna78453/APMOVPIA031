@@ -1,0 +1,7 @@
+{
+  "name": "RateYourMusicApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
