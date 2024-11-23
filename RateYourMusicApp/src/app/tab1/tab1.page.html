@@ -7,11 +7,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list>
+    <ion-item>
+       <ion-label *ngFor="let album of album$ | async"> {{album.name}} </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
