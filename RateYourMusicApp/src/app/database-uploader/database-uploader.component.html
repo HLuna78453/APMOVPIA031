@@ -1,0 +1,22 @@
+<ion-content class="ion-padding">
+  <form #f="ngForm" (ngSubmit)="addData(f)">
+    <ion-item>
+      <ion-input name="albumNameIn" label="Album Name" NgModel="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input name="artistNameIn" label="Artist Name" NgModel="artist"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-datetime name="releaseDateIn" label="Release Date" presentation="date" NgModel="date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-select name="typeIn" label="Type" label-placement="floating" NgModel="type">
+        <ion-select-option value="Album">Album</ion-select-option>
+        <ion-select-option value="EP">EP</ion-select-option>
+        <ion-select-option value="Single">Single</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <button type="submit">Upload Release</button>
+  </form>
+</ion-content>
