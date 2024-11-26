@@ -5,11 +5,14 @@ import {
   IonSelect, IonSelectOption, IonLabel, IonButton 
 } from "@ionic/angular/standalone";
 
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule } from '@angular/forms';
 import { AlbumData } from '../app.albumInterface';
+
 import { 
   Firestore, collection, addDoc
 } from '@angular/fire/firestore';
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-database-uploader',
@@ -18,7 +21,8 @@ import {
   standalone: true,
   imports: [
     IonButton, IonLabel, IonDatetime, IonItem, IonInput, IonContent, 
-    IonHeader, IonTitle, IonToolbar, IonSelect, IonSelectOption, FormsModule
+    IonHeader, IonTitle, IonToolbar, IonSelect, IonSelectOption, FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class DatabaseUploaderComponent  implements OnInit {

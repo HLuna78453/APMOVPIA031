@@ -9,25 +9,15 @@
 <ion-content [fullscreen]="true">
   <ion-list *ngFor="let album of album$ | async">
     <ion-item>
-       <ion-label> {{album.name}} </ion-label>
+       <ion-label> {{album.artist}} - {{album.name}} </ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-button id="createRelease">Can't find it? Upload another release</ion-button>
-  <ion-modal #modal trigger="createRelease" (willPresent)="onWillPresent()">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Upload Release</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="modal.dismiss()"> Close </ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <ion-nav #nav></ion-nav>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
+  <li>
+    <a routerLink="/app-album-profile-editor" routerLinkActive="active" ariaCurrentWhenActive="page">
+      Can't find it? Upload a release.
+    </a>
+  </li>
 
+  <router-outlet></router-outlet>
 </ion-content>
