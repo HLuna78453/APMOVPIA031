@@ -7,11 +7,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list *ngFor="let album of album$ | async">
+    <ion-item>
+       <ion-label> {{album.Artist}} - {{album.Name}} </ion-label>
+    </ion-item>
+  </ion-list>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <li>
+    <a routerLink="/app-album-profile-editor" routerLinkActive="active" ariaCurrentWhenActive="page">
+      Can't find it? Upload a release.
+    </a>
+  </li>
+
+  <router-outlet></router-outlet>
 </ion-content>

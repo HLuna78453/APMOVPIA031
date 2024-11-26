@@ -1,0 +1,21 @@
+<ion-content class="ion-padding">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-input formControlName="Name" label="Album Name" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input  formControlName="Artist" label="Artist Name" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-datetime formControlName="ReleaseDate" label="Release Date" presentation="date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-select formControlName="Type" label="Type" label-placement="floating">
+        <ion-select-option value="Album">Album</ion-select-option>
+        <ion-select-option value="EP">EP</ion-select-option>
+        <ion-select-option value="Single">Single</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button type="submit" [disabled]="!profileForm.valid">Upload Release</ion-button>
+  </form>
+</ion-content>
