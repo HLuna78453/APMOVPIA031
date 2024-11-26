@@ -26,10 +26,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class AlbumProfileEditorComponent  implements OnInit {
   profileForm = new FormGroup({
-    albumName: new FormControl(''),
-    artistName: new FormControl(''),
-    releaseDate: new FormControl(''),
-    releaseType: new FormControl('')
+    Name: new FormControl(''),
+    Artist: new FormControl(''),
+    ReleaseDate: new FormControl(''),
+    Type: new FormControl('')
   });
 
   //value = input.required<IonModal>();
@@ -42,9 +42,14 @@ export class AlbumProfileEditorComponent  implements OnInit {
 
   onSubmit(){
     console.log(this.profileForm.value);
-  }
 
-  confirm() {
-
+    const albumCollectionInstante = collection(this.firestore, 'Album');
+    addDoc(albumCollectionInstante, this.profileForm.value)
+      .then(()=>{
+        console.log('Data Saved Success');
+      })
+      .catch((err) =>{
+        console.log(err);
+      })
   }
 }

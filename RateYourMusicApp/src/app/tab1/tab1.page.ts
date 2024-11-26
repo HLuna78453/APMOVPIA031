@@ -7,13 +7,14 @@ import {
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { Observable } from 'rxjs';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { doc, getDocs, getFirestore, QuerySnapshot } from 'firebase/firestore';
+import { doc, getDoc, getDocs, getFirestore, query, QuerySnapshot } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import { NgFor } from '@angular/common';
-import { AlbumData } from '../app.albumInterface';
+//import { AlbumData } from '../app.albumInterface';
 import { addDoc } from 'firebase/firestore';
 import { AlbumProfileEditorComponent } from '../album-profile-editor/album-profile-editor.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-tab1',
@@ -28,32 +29,23 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   ]
 })
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDUpSHZSeDA_x_ZmIJ2_w2fNPBzuUsFxIw",
-  authDomain: "rymapp-unofficial-1948924.firebaseapp.com",
-  projectId: "rymapp-unofficial-1948924",
-  storageBucket: "rymapp-unofficial-1948924.firebasestorage.app",
-  messagingSenderId: "584881246596",
-  appId: "1:584881246596:web:1205d5ffaec9b3b5c0cdd1"
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-const querySnaptot = await getDocs(collection(db, "Album"));
-querySnaptot.forEach((doc) => {
-  console.log(doc.id, "-", doc.data());
-})
-
 export class Tab1Page {
-  album$: Observable<AlbumData[]>;
+  album$!: Observable<any>;
 
-  
+  constructor(private fs: Firestore) {
+    /*const albumCollection = collection(this.fs, 'Album')
+    this.album$ = collectionData(albumCollection) as Observable<AlbumData[]>;*/
+    this.getData();
+  }
 
-  constructor(/*private fs: Firestore*/) {
-    //const albumCollection = collection(this.fs, 'Album');
-    //this.album$ = collectionData(albumCollection) as Observable<AlbumData[]>;
+  getData () {
+    const albumCollection = collection(this.fs, 'Album');
+    collectionData(albumCollection)
+    .subscribe(v => {
+      console.log(v);
+    })
+
+    this.album$ = collectionData(albumCollection);
   }
 
   /*addData(f: any) {
@@ -66,4 +58,13 @@ export class Tab1Page {
         console.log(err);
       })
   }*/
+}
+
+export interface AlbumData {
+  name: string;
+  artist: string;
+  genres: string[];
+  releaseDate: Date;
+  type: string;
+  id?: string;
 }
